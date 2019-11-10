@@ -1,14 +1,21 @@
 import React from "react"
 import PropTypes from "prop-types"
+
+import Timestamp from "react-timestamp"
+
 class Article extends React.Component {
   render () {
     return (
       <React.Fragment>
-        <div class="article-title">
+        <div className="article-title">
           <a href={this.props.path}>{this.props.title}</a>
         </div>
-        <div class="article-body">
+        <div className="article-body">
           {this.props.description}
+          <div className="article-meta-details">
+            <small>Created by: {this.props.author}, <Timestamp relative date={this.props.created_at} />,
+                  last updated: <Timestamp relative date={this.props.updated_at} /></small>
+          </div>
         </div>
       </React.Fragment>
     );
@@ -18,6 +25,9 @@ class Article extends React.Component {
 Article.propTypes = {
   title: PropTypes.string,
   path: PropTypes.string,
-  description: PropTypes.string
+  description: PropTypes.string,
+  author: PropTypes.string,
+  updated_at: PropTypes.string,
+  created_at: PropTypes.string,
 };
 export default Article
